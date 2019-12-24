@@ -13,62 +13,67 @@ import Header from './components/Header';
 
 export default (signedIn = false) =>
   createAppContainer(
-    createStackNavigator(
+    createSwitchNavigator(
       {
         Sign: createSwitchNavigator({
           SignIn,
         }),
         App: createBottomTabNavigator(
           {
-            CheckIn,
-            New: {
+            CheckIn: {
+              screen: createStackNavigator(
+                {
+                  CheckIn,
+                },
+                {
+                  defaultNavigationOptions: navigation => ({
+                    headerBackground: <Header {...navigation} />,
+                  }),
+                }
+              ),
+              navigationOptions: {
+                tabBarLabel: 'Pedir ajuda',
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="edit-location" size={20} color={tintColor} />
+                ),
+              },
+            },
+            HelpOrder: {
               screen: createStackNavigator(
                 {
                   HelpOrders,
                   NewHelpOrder,
                 },
                 {
-                  headerLayoutPreset: 'center',
-                  defaultNavigationOptions: {
-                    headerTransparent: true,
-                    headerTintColor: '#000',
-                    headerLeftContainerStyle: {
-                      marginLeft: 20,
-                    },
-                  },
+                  defaultNavigationOptions: navigation => ({
+                    headerBackground: <Header {...navigation} />,
+                  }),
                 }
               ),
               navigationOptions: {
                 tabBarLabel: 'Pedir ajuda',
-                tabBarIcon: <Icon name="live-help" size={20} color="#999999" />,
+                tabBarIcon: ({ tintColor }) => (
+                  <Icon name="live-help" size={20} color={tintColor} />
+                ),
               },
             },
           },
 
           {
-            // resetOnBlur: true,
-
+            resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: '#EE4E62',
               inactiveTintColor: '#999999',
               style: {
                 backgroundColor: '#FFF',
-                // borderTopColor: '#FFF',
               },
             },
           }
         ),
       },
-
       {
         initialRouteName: signedIn ? 'App' : 'Sign',
-        defaultNavigationOptions: navigation => ({
-          headerBackground: <Header {...navigation} />,
-          headerStyle: {
-            backgroundColor: '#FFF',
-          },
-        }),
       }
     )
   );

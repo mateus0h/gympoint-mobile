@@ -3,8 +3,6 @@ import { ActivityIndicator, Alert } from 'react-native';
 
 import { useSelector } from 'react-redux';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import { formatRelative, parseISO } from 'date-fns';
 import { pt } from 'date-fns/esm/locale';
 
@@ -160,10 +158,3 @@ export default function CheckIn() {
     </Background>
   );
 }
-
-CheckIn.navigationOptions = {
-  tabBarLabel: 'Check-ins',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="edit-location" size={20} color={tintColor} />
-  ),
-};

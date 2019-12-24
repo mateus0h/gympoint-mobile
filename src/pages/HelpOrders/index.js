@@ -86,9 +86,3 @@ export default function HelpOrders({ navigation }) {
     </Background>
   );
 }
-HelpOrders.navigationOptions = {
-  tabBarLabel: 'Pedidos de Ajuda',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="live-help" size={20} color={tintColor} />
-  ),
-};
