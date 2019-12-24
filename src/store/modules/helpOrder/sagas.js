@@ -11,7 +11,7 @@ export function* setQuestion({ payload }) {
       question,
     });
   } catch (err) {
-    Alert.alert(err.menn);
+    Alert.alert('Flha no cadastro', `${err.response.data.msg}`);
   }
 }
 
