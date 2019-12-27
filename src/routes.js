@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn';
 import CheckIn from './pages/CheckIn';
 import HelpOrders from './pages/HelpOrders';
 import NewHelpOrder from './pages/NewHelpOrder';
+import ResponseHelpOrder from './pages/ResponseHelpOrder';
 
 import Header from './components/Header';
 
@@ -43,6 +44,7 @@ export default (signedIn = false) =>
                 {
                   HelpOrders,
                   NewHelpOrder,
+                  ResponseHelpOrder,
                 },
                 {
                   defaultNavigationOptions: navigation => ({

@@ -22,6 +22,7 @@ import api from '~/services/api';
 
 export default function CheckIn() {
   const [checkins, setCheckins] = useState([]);
+  const [loadingPlus, setLoadingPlus] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -39,6 +40,7 @@ export default function CheckIn() {
 
   useEffect(() => {
     async function loadCheckins() {
+      setLoading(true);
       const response = await api.get(`students/${profile.id}/checkins`, {
         params: {
           page: 0,
@@ -55,6 +57,7 @@ export default function CheckIn() {
           ...check,
         };
       });
+      setLoading(false);
 
       setCheckins(data);
     }
@@ -63,7 +66,7 @@ export default function CheckIn() {
   }, [profile.id]);
 
   async function updateList(nPage) {
-    setLoading(true);
+    setLoadingPlus(true);
 
     const response = await api.get(`students/${profile.id}/checkins`, {
       params: {
@@ -86,7 +89,7 @@ export default function CheckIn() {
     const newList = [...checkins, ...data];
 
     setCheckins(newList);
-    setLoading(false);
+    setLoadingPlus(false);
   }
 
   async function loadMore(nPage) {
@@ -139,6 +142,8 @@ export default function CheckIn() {
           <Button onPress={handleConfirmCheckIn}>Novo check-in</Button>
         </ContainerButton>
 
+        {loading && <ActivityIndicator color="#ee4e61" />}
+
         <List
           onEndReachedThreshold={0.01}
           onEndReached={() => loadMore(page)}
@@ -153,7 +158,7 @@ export default function CheckIn() {
             </CheckinBar>
           )}
         />
-        {loading && <ActivityIndicator color="#ee4e61" />}
+        {loadingPlus && <ActivityIndicator color="#ee4e61" />}
       </Container>
     </Background>
   );

@@ -10,8 +10,9 @@ export function* setQuestion({ payload }) {
     yield call(api.post, `students/${idStudent}/help-orders`, {
       question,
     });
+    Alert.alert('Aviso', 'Pedido de ajuda enviado com sucesso');
   } catch (err) {
-    Alert.alert('Flha no cadastro', `${err.response.data.msg}`);
+    Alert.alert('Falha no cadastro', `${err.response.data.msg}`);
   }
 }
 

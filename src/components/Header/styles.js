@@ -8,10 +8,6 @@ export const Container = styled.View`
   padding-top: 20px;
 `;
 
-export const Button = styled.TouchableOpacity`
-  margin-left: 10px;
-`;
-
 export const Logo = styled.Image.attrs({
   source: logo,
   resizeMode: 'cover',
