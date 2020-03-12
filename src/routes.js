@@ -33,7 +33,7 @@ export default (signedIn = false) =>
                 }
               ),
               navigationOptions: {
-                tabBarLabel: 'Pedir ajuda',
+                tabBarLabel: 'Check-in',
                 tabBarIcon: ({ tintColor }) => (
                   <Icon name="edit-location" size={20} color={tintColor} />
                 ),
